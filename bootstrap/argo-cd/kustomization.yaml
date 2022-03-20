@@ -15,3 +15,15 @@ kind: Kustomization
 namespace: argocd
 resources:
 - github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.3.0
+
+patches:
+  # Replace image with arm64 built one
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: argocd-applicationset-controller
+    patch: |-
+      - op: replace
+        path: /spec/template/spec/containers/0/image
+        value: ghcr.io/jr64/argocd-applicationset:v0.4.0
