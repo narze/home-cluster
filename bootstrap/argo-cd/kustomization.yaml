@@ -17,7 +17,8 @@ resources:
 - github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.3.0
 
 patches:
-  # Replace image with arm64 built one
+  # Replace image with arm64 built one until official one is ready 
+  # Ref. https://github.com/argoproj/argo-cd/issues/8394
   - target:
       group: apps
       version: v1
