@@ -61,7 +61,7 @@ spec:
               name: streamie-g9fbct7cg7
         - name: PORT
           value: "3000"
-        image: ghcr.io/narze/streamie/streamie:bvxpcia
+        image: ghcr.io/narze/streamie/streamie:bvxPcIA
         imagePullPolicy: Always
         name: streamie
         ports:
