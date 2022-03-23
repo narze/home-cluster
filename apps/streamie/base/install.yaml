@@ -31,6 +31,9 @@ metadata:
   name: streamie
   namespace: streamie
 spec:
+  selector:
+    matchLabels:
+      app: streamie
   replicas: 1
   template:
     metadata:
