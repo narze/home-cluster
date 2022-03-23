@@ -1,0 +1,68 @@
+apiVersion: v1
+data:
+  DEV_GUILD_ID: ZHVtbXlfdmFsdWU=
+  DISCORD_TOKEN: ZHVtbXlfdmFsdWU=
+  OAUTH_CLIENT_ID: ZHVtbXlfdmFsdWU=
+  TWITCH_OAUTH_TOKEN: ZHVtbXlfdmFsdWU=
+kind: Secret
+metadata:
+  name: streamie-g9fbct7cg7
+  namespace: streamie
+type: Opaque
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streamie
+  namespace: streamie
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 3000
+  selector:
+    app: streamie
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: streamie
+  name: streamie
+  namespace: streamie
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: streamie
+    spec:
+      containers:
+      - env:
+        - name: TWITCH_OAUTH_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: TWITCH_OAUTH_TOKEN
+              name: streamie-g9fbct7cg7
+        - name: OAUTH_CLIENT_ID
+          valueFrom:
+            secretKeyRef:
+              key: OAUTH_CLIENT_ID
+              name: streamie-g9fbct7cg7
+        - name: DISCORD_TOKEN
+          valueFrom:
+            secretKeyRef:
+              key: DISCORD_TOKEN
+              name: streamie-g9fbct7cg7
+        - name: DEV_GUILD_ID
+          valueFrom:
+            secretKeyRef:
+              key: DEV_GUILD_ID
+              name: streamie-g9fbct7cg7
+        - name: PORT
+          value: "3000"
+        image: ghcr.io/narze/streamie/streamie:bvxpcia
+        imagePullPolicy: Always
+        name: streamie
+        ports:
+        - containerPort: 3000
