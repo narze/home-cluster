@@ -6,7 +6,7 @@ metadata:
     - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: argocd
+    namespace: sample
     server: "{{ .Values.spec.destination.server }}"
   project: default
   source:
