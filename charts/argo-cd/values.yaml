@@ -1,17 +1,27 @@
 argo-cd:
   dex:
     enabled: false
+
+  configs:
+    repositories:
+      - type: git
+        name: home-cluster
+        url: https://github.com/narze/home-cluster.git
+      - type: helm
+        name: argo-cd
+        url: https://argoproj.github.io/argo-helm
   server:
     extraArgs:
       - --insecure
     config:
-      repositories: |
-        - type: git
-          name: home-cluster
-          url: https://github.com/narze/home-cluster.git
-        - type: helm
-          name: argo-cd
-          url: https://argoproj.github.io/argo-helm
+      # DEPRECATED: Please instead use configs.credentialTemplates and configs.repositories
+      # repositories: |
+      #   - type: git
+      #     name: home-cluster
+      #     url: https://github.com/narze/home-cluster.git
+      #   - type: helm
+      #     name: argo-cd
+      #     url: https://argoproj.github.io/argo-helm
 
       # helm-secrets (1/2)
       helm.valuesFileSchemes: >-
