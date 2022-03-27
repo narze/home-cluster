@@ -1,0 +1,2 @@
+nginx:
+  nameOverride: "sample-helm-nginx-foo"

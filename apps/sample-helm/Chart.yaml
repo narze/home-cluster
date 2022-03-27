@@ -1,0 +1,7 @@
+apiVersion: v2
+name: sample-helm
+version: 1.0.0
+dependencies:
+  - name: nginx
+    version: ">1"
+    repository: https://charts.bitnami.com/bitnami
