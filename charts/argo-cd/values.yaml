@@ -9,3 +9,48 @@ argo-cd:
         - type: helm
           name: argo-cd
           url: https://argoproj.github.io/argo-helm
+
+  additionalApplications:
+    # Self-managed ArgoCD
+    - name: argocd
+      namespace: argocd
+      destination:
+        namespace: argocd
+        server: https://kubernetes.default.svc
+      project: argocd
+      source:
+        path: charts/argo-cd
+        # This repo
+        repoURL: https://github.com/narze/home-cluster.git
+        targetRevision: HEAD
+      # syncPolicy:
+      #   syncOptions:
+      #   - CreateNamespace=true
+
+  additionalProjects:
+    - name: argocd
+      namespace: argocd
+      additionalLabels: {}
+      additionalAnnotations: {}
+      description: ArgoCD Project
+      sourceRepos:
+        - "*"
+      destinations:
+        - namespace: argocd
+          server: https://kubernetes.default.svc
+      clusterResourceWhitelist:
+        - group: "*"
+          kind: "*"
+      orphanedResources:
+        warn: false
+
+  # Replace ApplicationSet image with arm64 built one until official one is ready
+  # Ref. https://github.com/argoproj/argo-cd/issues/8394
+  applicationSet:
+    image:
+      # -- Repository to use for the application set controller
+      repository: ghcr.io/jr64/argocd-applicationset
+      # -- Image pull policy for the application set controller
+      pullPolicy: IfNotPresent
+      # -- Tag to use for the application set controller
+      tag: "v0.4.0"
