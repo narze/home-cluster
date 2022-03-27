@@ -10,9 +10,6 @@ configMapGenerator:
           usernameSecret:
             key: git_username
             name: autopilot-secret
-      # Enable plugins for ksops
-      - |
-        kustomize.buildOptions= --enable-alpha-plugins
     name: argocd-cm
 kind: Kustomization
 namespace: argocd
@@ -33,9 +30,18 @@ patches:
         value: ghcr.io/jr64/argocd-applicationset:v0.4.0
 
   # ksops: https://github.com/viaduct-ai/kustomize-sops#argo-cd-integration-
-  - path: argo-cd-repo-server-ksops-patch.yaml
-    target:
+  - target:
+      group: apps
+      version: v1
+      kind: ConfigMap
+      name: argocd-cm
+    patch: |-
+      - op: replace
+        path: /data/kustomize.buildOptions
+        value: "--enable-alpha-plugins"
+  - target:
       group: apps
       version: v1
       kind: Deployment
       name: argocd-repo-server
+    path: argo-cd-repo-server-ksops-patch.yaml
