@@ -86,6 +86,15 @@ argo-cd:
 
   # helm-secrets (2/2) start
   repoServer:
+    # Mount the secrets to the ArgoCD repo server
+    volumes:
+      - name: helm-secrets-private-keys
+        secret:
+          secretName: helm-secrets-private-keys
+    volumeMounts:
+      - mountPath: /helm-secrets-private-keys/
+        name: helm-secrets-private-keys
+
     env:
       - name: HELM_PLUGINS
         value: /custom-tools/helm-plugins/

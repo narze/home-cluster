@@ -17,3 +17,21 @@ helm upgrade argo-cd charts/argo-cd/ -n argocd # Update values
 
 helm show values charts/argo-cd/ # Check values
 ```
+
+## Helm-secrets
+
+Ref. <https://github.com/jkroepke/helm-secrets/wiki/ArgoCD-Integration>
+
+### Prerequisites (Manual install once)
+
+- Generate `age` key
+
+```shell
+age-keygen -o key.txt
+```
+
+- Create secret from key file
+
+```shell
+kubectl create secret generic helm-secrets-private-keys --from-file=key.txt -n argocd
+```
