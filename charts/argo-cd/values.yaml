@@ -32,7 +32,8 @@ argo-cd:
             selfHeal: true
         #   syncOptions:
         #   - CreateNamespace=true
-      # Root app of apps
+
+      # Root app of apps `/apps`
       - name: root
         namespace: argocd
         destination:

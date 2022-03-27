@@ -1,3 +1,6 @@
 spec:
   destination:
     server: https://kubernetes.default.svc
+repo:
+  url: https://github.com/narze/home-cluster.git
+  revision: main
