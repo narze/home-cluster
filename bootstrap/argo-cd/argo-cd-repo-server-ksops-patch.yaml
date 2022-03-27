@@ -12,7 +12,8 @@ spec:
       # 2. Use an init container to download/copy custom binaries into the emptyDir
       initContainers:
         - name: install-ksops
-          image: viaductoss/ksops:v3.0.2
+          # Use arm64 image for Raspberry pi
+          image: viaductoss/ksops:v3.0.2-arm64
           command: ["/bin/sh", "-c"]
           args:
             - echo "Installing KSOPS...";
