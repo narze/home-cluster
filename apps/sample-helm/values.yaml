@@ -1,4 +1,4 @@
 echo-server:
   fullnameOverride: "sample-helm-echo-server"
   service:
-    type: LoadBalancer
+    type: ClusterIP
