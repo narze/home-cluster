@@ -1,2 +1,3 @@
 secrets.yaml
 *.dec.yaml
+/key.txt
