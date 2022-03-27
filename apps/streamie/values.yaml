@@ -4,3 +4,6 @@
 #     type: ClusterIP
 #   image:
 #     tag: 0.5.1
+image:
+  repository: ghcr.io/narze/streamie/streamie
+  tag: bvxPcIA

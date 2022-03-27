@@ -38,7 +38,7 @@ spec:
                   name: streamie
             - name: PORT
               value: "3000"
-          image: ghcr.io/narze/streamie/streamie:bvxPcIA
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: Always
           name: streamie
           ports:
