@@ -112,6 +112,15 @@ argo-cd:
       - mountPath: /custom-tools
         name: custom-tools
 
+      # ksops: Mount ksops to kustomize plugin
+      - mountPath: /usr/local/bin/kustomize
+        name: custom-tools
+        subPath: kustomize
+        # Verify this matches a XDG_CONFIG_HOME=/.config env variable
+      - mountPath: /.config/kustomize/plugin/viaduct.ai/v1/ksops/ksops
+        name: custom-tools
+        subPath: ksops
+
     env:
       # ksops: Set the XDG_CONFIG_HOME env variable to allow kustomize to detect the plugin
       - name: XDG_CONFIG_HOME
