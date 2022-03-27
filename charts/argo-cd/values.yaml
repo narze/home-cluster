@@ -97,7 +97,7 @@ argo-cd:
       # -- Tag to use for the application set controller
       tag: "v0.4.0"
 
-  # helm-secrets (2/2) start
+  # helm-secrets (2/2) & ksops - start
   repoServer:
     # Mount the secrets to the ArgoCD repo server
     volumes:
@@ -113,6 +113,10 @@ argo-cd:
         name: custom-tools
 
     env:
+      # ksops: Set the XDG_CONFIG_HOME env variable to allow kustomize to detect the plugin
+      - name: XDG_CONFIG_HOME
+        value: /.config
+
       - name: HELM_PLUGINS
         value: /custom-tools/helm-plugins/
       # In case wrapper scripts are used, HELM_SECRETS_HELM_PATH needs to be the path of the real helm binary
@@ -163,4 +167,17 @@ argo-cd:
         volumeMounts:
           - mountPath: /custom-tools
             name: custom-tools
-  # helm-secrets (2/2) end
+
+      # ksops: Install KSOPS
+      - name: install-ksops
+        image: viaductoss/ksops:v3.0.2-arm64
+        command: ["/bin/sh", "-c"]
+        args:
+          - echo "Installing KSOPS...";
+            mv ksops /custom-tools/;
+            mv $GOPATH/bin/kustomize /custom-tools/;
+            echo "Done.";
+        volumeMounts:
+          - mountPath: /custom-tools
+            name: custom-tools
+  # helm-secrets (2/2) & ksops - end
