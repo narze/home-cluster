@@ -2,34 +2,32 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nginx-service
-  # namespace: sample
 spec:
   ports:
     - port: 80
       protocol: TCP
       targetPort: 3000
   selector:
-    app: nginx
+    app: nginx-sample-kustomize
 ---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nginx-deployment
-  # namespace: sample
   labels:
-    app: nginx
+    app: nginx-sample-kustomize
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nginx
+      app: nginx-sample-kustomize
   template:
     metadata:
       labels:
-        app: nginx
+        app: nginx-sample-kustomize
     spec:
       containers:
         - name: nginx
-          image: nginx:armv8
+          image: nginx:alpine
           ports:
             - containerPort: 80
