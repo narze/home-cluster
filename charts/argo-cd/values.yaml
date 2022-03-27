@@ -91,9 +91,13 @@ argo-cd:
       - name: helm-secrets-private-keys
         secret:
           secretName: helm-secrets-private-keys
+      - name: custom-tools
+        emptyDir: {}
     volumeMounts:
       - mountPath: /helm-secrets-private-keys/
         name: helm-secrets-private-keys
+      - mountPath: /custom-tools
+        name: custom-tools
 
     env:
       - name: HELM_PLUGINS
@@ -112,12 +116,12 @@ argo-cd:
         value: "false"
       - name: HELM_SECRETS_VALUES_ALLOW_PATH_TRAVERSAL
         value: "false"
-    volumes:
-      - name: custom-tools
-        emptyDir: {}
-    volumeMounts:
-      - mountPath: /custom-tools
-        name: custom-tools
+    # volumes:
+    #   - name: custom-tools
+    #     emptyDir: {}
+    # volumeMounts:
+    #   - mountPath: /custom-tools
+    #     name: custom-tools
 
     initContainers:
       - name: download-tools
