@@ -1,2 +1,6 @@
 nginx:
-  nameOverride: "sample-helm-nginx-foo"
+  fullnameOverride: "sample-helm-nginx-foo"
+  image:
+    registry: docker.io
+    repository: nginx
+    tag: alpine
