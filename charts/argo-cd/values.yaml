@@ -32,6 +32,21 @@ argo-cd:
             selfHeal: true
         #   syncOptions:
         #   - CreateNamespace=true
+      # Root app of apps
+      - name: root
+        namespace: argocd
+        destination:
+          namespace: argocd
+          server: https://kubernetes.default.svc
+        project: default
+        source:
+          path: apps
+          repoURL: https://github.com/narze/home-cluster.git
+          targetRevision: HEAD
+        syncPolicy:
+          automated:
+            selfHeal: true
+            prune: true
 
     additionalProjects:
       - name: argocd
