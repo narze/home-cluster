@@ -21,7 +21,7 @@ spec:
         # secrets+gpg-import://<key-volume-mount>/<key-name>.asc?<relative/path/to/the/encrypted/secrets.yaml>
         # secrets+age-import://<key-volume-mount>/<key-name>.txt?<relative/path/to/the/encrypted/secrets.yaml>
         # Example Method 1: (Assumptions: key-volume-mount=/helm-secrets-private-keys, key-name=app, secrets.yaml is in the root folder)
-        - secrets+age-import:///helm-secrets-private-keys/key.txt?secrets.enc.yaml
+        - secrets+age-import:///helm-secrets-private-keys/key.txt?templates/secrets.enc.yaml
   syncPolicy:
     automated:
       prune: true
