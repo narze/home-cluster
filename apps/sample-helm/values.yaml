@@ -1,9 +1,4 @@
-nginx:
-  fullnameOverride: "sample-helm-nginx-foo"
-  image:
-    registry: docker.io
-    repository: nginx
-    tag: alpine
+echo-server:
+  fullnameOverride: "sample-helm-echo-server"
   service:
-    type: NodePort
-    port: 8080
+    type: LoadBalancer
