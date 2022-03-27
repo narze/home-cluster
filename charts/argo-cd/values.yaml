@@ -10,10 +10,13 @@ argo-cd:
       - type: helm
         name: argo-cd
         url: https://argoproj.github.io/argo-helm
+
   server:
     extraArgs:
       - --insecure
     config:
+      kustomize.buildOptions: "--enable-alpha-plugins"
+
       # DEPRECATED: Please instead use configs.credentialTemplates and configs.repositories
       # repositories: |
       #   - type: git
