@@ -116,6 +116,9 @@ argo-cd:
       # ksops: Set the XDG_CONFIG_HOME env variable to allow kustomize to detect the plugin
       - name: XDG_CONFIG_HOME
         value: /.config
+      # ksops: Points SOPS_AGE_KEY_FILE to key.txt for decryption with ksops
+      - name: SOPS_AGE_KEY_FILE
+        value: /helm-secrets-private-keys/key.txt
 
       - name: HELM_PLUGINS
         value: /custom-tools/helm-plugins/
