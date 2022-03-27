@@ -12,7 +12,7 @@ configMapGenerator:
             name: autopilot-secret
       # Enable plugins for ksops
       - |
-        kustomize.buildOptions= "--enable-alpha-plugins"
+        kustomize.buildOptions= --enable-alpha-plugins
     name: argocd-cm
 kind: Kustomization
 namespace: argocd
