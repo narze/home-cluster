@@ -1,6 +1,0 @@
-echo-server:
-  fullnameOverride: "sample-helm-echo-server"
-  service:
-    type: ClusterIP
-  image:
-    tag: 0.5.1

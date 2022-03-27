@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: streamie
+  name: streamie
+spec:
+  selector:
+    matchLabels:
+      app: streamie
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: streamie
+    spec:
+      containers:
+        - env:
+            - name: TWITCH_OAUTH_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: TWITCH_OAUTH_TOKEN
+                  name: streamie
+            - name: OAUTH_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: OAUTH_CLIENT_ID
+                  name: streamie
+            - name: DISCORD_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: DISCORD_TOKEN
+                  name: streamie
+            - name: DEV_GUILD_ID
+              valueFrom:
+                secretKeyRef:
+                  key: DEV_GUILD_ID
+                  name: streamie
+            - name: PORT
+              value: "3000"
+          image: ghcr.io/narze/streamie/streamie:bvxPcIA
+          imagePullPolicy: Always
+          name: streamie
+          ports:
+            - containerPort: 3000

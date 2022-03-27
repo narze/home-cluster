@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: streamie
+  # annotations:
+  #   argocd.argoproj.io/sync-wave: "-1"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: streamie
+    server: "{{ .Values.spec.destination.server }}"
+  project: default
+  source:
+    path: apps/streamie
+    repoURL: "{{ .Values.repo.url }}"
+    targetRevision: "{{ .Values.repo.revision }}"
+    helm:
+      valueFiles:
+        # Method 1: Mount the gpg/age key from a kubernetes secret as volume
+        # secrets+gpg-import://<key-volume-mount>/<key-name>.asc?<relative/path/to/the/encrypted/secrets.yaml>
+        # secrets+age-import://<key-volume-mount>/<key-name>.txt?<relative/path/to/the/encrypted/secrets.yaml>
+        # Example Method 1: (Assumptions: key-volume-mount=/helm-secrets-private-keys, key-name=key, secrets.yaml is in the templates folder)
+        - secrets+age-import:///helm-secrets-private-keys/key.txt?secret-values.enc.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
