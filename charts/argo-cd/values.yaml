@@ -69,6 +69,22 @@ argo-cd:
             selfHeal: true
             prune: true
 
+      # Root app of infra `/infra`
+      - name: infra
+        namespace: infra
+        destination:
+          namespace: infra
+          server: https://kubernetes.default.svc
+        project: infra
+        source:
+          path: infra
+          repoURL: https://github.com/narze/home-cluster.git
+          targetRevision: HEAD
+        syncPolicy:
+          automated:
+            selfHeal: true
+            prune: true
+
     additionalProjects:
       - name: argocd
         namespace: argocd
@@ -79,6 +95,22 @@ argo-cd:
           - "*"
         destinations:
           - namespace: argocd
+            server: https://kubernetes.default.svc
+        clusterResourceWhitelist:
+          - group: "*"
+            kind: "*"
+        orphanedResources:
+          warn: false
+
+      - name: infra
+        namespace: infra
+        additionalLabels: {}
+        additionalAnnotations: {}
+        description: Infrastructure Project
+        sourceRepos:
+          - "*"
+        destinations:
+          - namespace: infra
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
           - group: "*"
