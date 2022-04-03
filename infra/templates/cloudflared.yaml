@@ -4,20 +4,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: httpbin-deployment
+  name: nginx-deployment
 spec:
   selector:
     matchLabels:
-      app: httpbin
+      app: nginx
   replicas: 2
   template:
     metadata:
       labels:
-        app: httpbin
+        app: nginx
     spec:
       containers:
-        - name: httpbin
-          image: kennethreitz/httpbin:latest
+        - name: nginx
+          image: nginx:alpine
           ports:
             - containerPort: 80
 ---
@@ -27,7 +27,7 @@ metadata:
   name: web-service
 spec:
   selector:
-    app: httpbin
+    app: nginx
   ports:
     - protocol: TCP
       port: 80
@@ -123,7 +123,7 @@ data:
     # from the internet to cloudflared, run `cloudflared tunnel route dns <tunnel> <hostname>`.
     # E.g. `cloudflared tunnel route dns example-tunnel tunnel.example.com`.
     ingress:
-      # The first rule proxies traffic to the httpbin sample Service defined in app.yaml
+      # The first rule proxies traffic to the nginx sample Service defined in app.yaml
       - hostname: home-cluster.monosor.dev
         service: http://web-service:80
 
