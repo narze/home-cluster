@@ -71,7 +71,7 @@ argo-cd:
 
       # Root app of infra `/infra`
       - name: infra
-        namespace: infra
+        namespace: argocd
         destination:
           namespace: infra
           server: https://kubernetes.default.svc
@@ -105,13 +105,15 @@ argo-cd:
           warn: false
 
       - name: infra
-        namespace: infra
+        namespace: argocd
         additionalLabels: {}
         additionalAnnotations: {}
         description: Infrastructure Project
         sourceRepos:
           - "*"
         destinations:
+          - namespace: argocd
+            server: https://kubernetes.default.svc
           - namespace: infra
             server: https://kubernetes.default.svc
         clusterResourceWhitelist:
