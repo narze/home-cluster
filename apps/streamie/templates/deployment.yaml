@@ -16,6 +16,7 @@ spec:
     spec:
       containers:
         - env:
+            # TODO: Loop from secret-values
             - name: TWITCH_OAUTH_TOKEN
               valueFrom:
                 secretKeyRef:
@@ -35,6 +36,16 @@ spec:
               valueFrom:
                 secretKeyRef:
                   key: DEV_GUILD_ID
+                  name: streamie
+            - name: DISCORD_ADMIN_USER_ID
+              valueFrom:
+                secretKeyRef:
+                  key: DISCORD_ADMIN_USER_ID
+                  name: streamie
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  key: DATABASE_URL
                   name: streamie
             - name: PORT
               value: "3000"
