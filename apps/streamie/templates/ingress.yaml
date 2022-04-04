@@ -18,8 +18,8 @@ spec:
         paths:
           - backend:
               service:
-                name: web
+                name: streamie
                 port:
-                  number: 80
+                  number: 8080
             path: /
             pathType: Prefix
