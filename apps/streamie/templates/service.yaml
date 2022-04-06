@@ -9,3 +9,15 @@ spec:
       targetPort: 8080
   selector:
     app: streamie
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streamie-web
+spec:
+  ports:
+    - port: 3000
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: streamie-web
