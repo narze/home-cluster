@@ -20,5 +20,5 @@ spec:
           name: streamie-web
           ports:
             - containerPort: 3000
-          command: ["yarn"]
-          args: ["web", "dev"]
+          command: ["node"]
+          args: ["web/build"]
