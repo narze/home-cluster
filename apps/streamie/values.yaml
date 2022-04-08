@@ -6,4 +6,4 @@
 #     tag: 0.5.1
 image:
   repository: ghcr.io/narze/streamie/streamie
-  tag: 46269d2f
+  tag: fe353eae
