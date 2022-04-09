@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: streamie-socket
+  name: streamie-socket
+spec:
+  selector:
+    matchLabels:
+      app: streamie-socket
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: streamie-socket
+    spec:
+      containers:
+        - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: Always
+          name: streamie-socket
+          ports:
+            - containerPort: 8888

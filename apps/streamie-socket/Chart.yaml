@@ -1,0 +1,7 @@
+apiVersion: v2
+name: streamie-socket
+version: 1.0.0
+# dependencies:
+#   - name: echo-server
+#     version: ">0.1"
+#     repository: https://ealenn.github.io/charts

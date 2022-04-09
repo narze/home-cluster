@@ -1,0 +1,27 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: streamie-socket
+  # annotations:
+  #   argocd.argoproj.io/sync-wave: "-1"
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: streamie
+    server: "{{ .Values.spec.destination.server }}"
+  project: default
+  source:
+    path: apps/streamie-socket
+    repoURL: "{{ .Values.repo.url }}"
+    targetRevision: "{{ .Values.repo.revision }}"
+    helm:
+      valueFiles:
+        # - secrets+age-import:///helm-secrets-private-keys/key.txt?secret-values.enc.yaml
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true

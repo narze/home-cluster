@@ -1,0 +1,3 @@
+image:
+  repository: ghcr.io/narze/streamie/streamie-socket
+  tag: 2e84ef86
