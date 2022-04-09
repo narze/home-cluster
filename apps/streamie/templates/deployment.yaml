@@ -16,6 +16,8 @@ spec:
     spec:
       containers:
         - env:
+            - name: SOCKET_IO_SERVER_URL
+              value: http://streamie-socket.narze.live
             # TODO: Loop from secret-values
             - name: TWITCH_OAUTH_TOKEN
               valueFrom:
