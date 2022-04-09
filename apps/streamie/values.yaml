@@ -1,9 +1,3 @@
-# echo-server:
-#   fullnameOverride: "sample-helm-echo-server"
-#   service:
-#     type: ClusterIP
-#   image:
-#     tag: 0.5.1
 image:
   repository: ghcr.io/narze/streamie/streamie
-  tag: fe353eae
+  tag: b4815faf
