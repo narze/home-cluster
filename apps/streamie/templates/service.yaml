@@ -33,7 +33,8 @@ spec:
     - port: 56379
       protocol: TCP
       targetPort: 6379
-  externalIPs:
-    - 100.113.190.46
+  # externalIPs:
+  #   - 100.113.190.46
+  externalName: redis.streamie.homelab.narze.live
   selector:
     app: streamie-redis
