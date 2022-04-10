@@ -18,7 +18,7 @@ spec:
     helm:
       values: |
         image:
-          repository: redis
+          repository: arm64v8/redis
           tag: 6-alpine
         architecture: standalone
         auth:
