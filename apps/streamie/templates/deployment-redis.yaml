@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: streamie-redis
+  name: streamie-redis
+spec:
+  selector:
+    matchLabels:
+      app: streamie-redis
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: streamie-redis
+    spec:
+      containers:
+        - image: arm64v8/redis:6-alpine
+          imagePullPolicy: Always
+          name: streamie-redis
+          ports:
+            - containerPort: 6379
