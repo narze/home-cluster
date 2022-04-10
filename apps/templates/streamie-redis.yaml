@@ -17,6 +17,9 @@ spec:
     targetRevision: 16.8.5
     helm:
       values: |
+        image:
+          repository: redis
+          tag: 6-alpine
         architecture: standalone
         auth:
           enabled: false
