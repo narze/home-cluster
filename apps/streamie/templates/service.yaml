@@ -21,3 +21,15 @@ spec:
       targetPort: 3000
   selector:
     app: streamie-web
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: streamie-redis
+spec:
+  ports:
+    - port: 6379
+      protocol: TCP
+      targetPort: 6379
+  selector:
+    app: streamie-redis
