@@ -17,6 +17,7 @@ spec:
     targetRevision: 16.8.5
     helm:
       values: |
+        architecture: standalone
         auth:
           enabled: false
   syncPolicy:
