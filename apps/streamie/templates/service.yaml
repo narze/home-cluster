@@ -27,11 +27,13 @@ kind: Service
 metadata:
   name: streamie-redis
 spec:
-  type: ExternalName
-  externalName: redis.streamie.homelab.narze.live
-  # ports:
-  #   - port: 6379
-  #     protocol: TCP
-  #     targetPort: 6379
+  type: LoadBalancer
+  # externalName: redis.streamie.homelab.narze.live
+  ports:
+    - port: 56379
+      protocol: TCP
+      targetPort: 6379
+  externalIPs:
+    - 100.113.190.46
   selector:
     app: streamie-redis
