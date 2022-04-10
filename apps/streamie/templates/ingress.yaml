@@ -33,13 +33,13 @@ spec:
                   number: 3000
             path: /
             pathType: Prefix
-    - host: redis.streamie.homelab.narze.live
-      http:
-        paths:
-          - backend:
-              service:
-                name: streamie-redis
-                port:
-                  number: 6379
-            path: /
-            pathType: Prefix
+    # - host: redis.streamie.homelab.narze.live
+    #   http:
+    #     paths:
+    #       - backend:
+    #           service:
+    #             name: streamie-redis
+    #             port:
+    #               number: 6379
+    #         path: /
+    #         pathType: Prefix
