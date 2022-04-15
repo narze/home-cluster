@@ -21,4 +21,5 @@ spec:
           ports:
             - containerPort: 3000
           command: ["node"]
-          args: ["web/build"]
+          args: ["."]
+          workingDir: "/app/web/web"

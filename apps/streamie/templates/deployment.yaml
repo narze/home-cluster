@@ -67,5 +67,8 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: Always
           name: streamie
-          ports:
-            - containerPort: 3000
+          # ports:
+          #   - containerPort: 3000
+          command: ["node"]
+          args: ["."]
+          workingDir: "/app/bot/bot"
