@@ -14,6 +14,8 @@ spec:
       labels:
         app: streamie-web
     spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
       containers:
         - image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: Always

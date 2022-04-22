@@ -14,6 +14,8 @@ spec:
       labels:
         app: streamie
     spec:
+      imagePullSecrets:
+        - name: dockerconfigjson-ghcr
       containers:
         - env:
             - name: SOCKET_IO_SERVER_URL
