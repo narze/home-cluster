@@ -20,6 +20,24 @@ spec:
           name: streamie-web
           ports:
             - containerPort: 3000
+          env:
+            - name: VITE_DISCORD_OAUTH_REDIRECT_URL
+              value: https://streamie-public.narze.live/pub/auth/redirect
+            - name: VITE_HOST
+              value: https://streamie-public.narze.live/pub
+
+            # TODO: Loop from secret-values
+            - name: VITE_DISCORD_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  key: VITE_DISCORD_CLIENT_ID
+                  name: streamie
+            - name: VITE_DISCORD_CLIENT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  key: VITE_DISCORD_CLIENT_SECRET
+                  name: streamie
+
           command: ["node"]
           args: ["."]
           workingDir: "/app/web/web"
