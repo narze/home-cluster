@@ -91,7 +91,7 @@ data:
       # The first rule proxies traffic to the nginx sample Service defined in app.yaml
       - hostname: streamie-public.narze.live
         service: http://streamie-web:3000
-        path: /pub/*
+        path: /(pub|_app)/*
 
       # This rule sends traffic to the built-in hello-world HTTP server. This can help debug connectivity
       # issues. If hello.example.com resolves and tunnel.example.com does not, then the problem is
