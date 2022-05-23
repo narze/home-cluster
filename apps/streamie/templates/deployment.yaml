@@ -64,6 +64,11 @@ spec:
                 secretKeyRef:
                   key: TWITCH_HELIX_OAUTH_TOKEN
                   name: streamie
+            - name: STREAMLABS_SOCKET_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  key: STREAMLABS_SOCKET_TOKEN
+                  name: streamie
             - name: PORT
               value: "3000"
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
