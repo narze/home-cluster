@@ -1,4 +1,4 @@
 image:
-  # repository: ghcr.io/narze/streamie/streamie-socket
-  repository: narze/streamie-socket
-  tag: latest
+  repository: ghcr.io/narze/streamie/streamie-socket
+  # repository: narze/streamie-socket
+  tag: stable
