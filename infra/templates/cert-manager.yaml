@@ -7,12 +7,12 @@ metadata:
 spec:
   project: default
   source:
-    chart: cert-manager
-    repoURL: https://charts.jetstack.io
-    targetRevision: 1.8.2
+    path: infra/cert-manager
+    repoURL: "{{ .Values.repo.url }}"
+    targetRevision: "{{ .Values.repo.revision }}"
     helm:
       releaseName: cert-manager
-      version: v1.8.2
+      # version: v1.8.2
       parameters:
         - name: "installCRDs"
           value: "true"
