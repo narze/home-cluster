@@ -2,10 +2,11 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: cert-manager
+  namespace: argocd
 spec:
   destination:
     name: ""
-    namespace: infra
+    namespace: cert-manager
     server: "{{ .Values.spec.destination.server }}"
   source:
     path: ""
