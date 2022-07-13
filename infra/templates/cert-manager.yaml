@@ -20,11 +20,11 @@ spec:
       #   installCRDs: true
   destination:
     server: "{{ .Values.spec.destination.server }}"
-    # namespace: cert-manager
-  # syncPolicy:
-  #   automated:
-  #     prune: true
-  #     selfHeal: true
-  #   syncOptions:
-  #     # - CreateNamespace=true
-  #     - ApplyOutOfSyncOnly=true
+    namespace: cert-manager
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ApplyOutOfSyncOnly=true
