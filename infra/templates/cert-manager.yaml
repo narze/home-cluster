@@ -3,9 +3,10 @@ kind: Application
 metadata:
   name: cert-manager
 spec:
+  project: infra
   destination:
     name: ""
-    namespace: infra
+    namespace: cert-manager
     server: "{{ .Values.spec.destination.server }}"
   source:
     path: ""
@@ -16,7 +17,6 @@ spec:
       parameters:
         - name: installCRDs
           value: "true"
-  project: infra
   syncPolicy:
     automated:
       prune: true
