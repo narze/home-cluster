@@ -13,6 +13,9 @@ argo-cd:
       - type: helm
         name: bitnami
         url: https://charts.bitnami.com/bitnami
+      - type: helm
+        name: jetstack
+        url: https://charts.jetstack.io
 
   server:
     extraArgs:
