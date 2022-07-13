@@ -4,14 +4,14 @@ metadata:
   name: streamie
   annotations:
     kubernetes.io/ingress.class: traefik
-    # traefik.ingress.kubernetes.io/router.tls: "true"
-    # traefik.ingress.kubernetes.io/router.entrypoints: https
+    traefik.ingress.kubernetes.io/router.tls: "true"
+    traefik.ingress.kubernetes.io/router.entrypoints: https
     cert-manager.io/cluster-issuer: cloudflare
 spec:
-  # tls:
-  # - hosts:
-  #   - streamie.homelab.dsb.dev
-  #   secretName: streamie-tls
+  tls:
+    - hosts:
+        - streamie-feed.narze.live
+      secretName: streamie-feed-tls
   rules:
     - host: streamie.narze.live
       http:
