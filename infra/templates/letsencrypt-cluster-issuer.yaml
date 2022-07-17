@@ -14,6 +14,8 @@ spec:
             apiTokenSecretRef:
               name: cloudflare-api-token-secret
               key: api-token
+
+      # HTTP01 Doesn't work with internal URLs like Tailscale
       # - http01:
       #     ingress:
       #       class: traefik
