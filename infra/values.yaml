@@ -4,3 +4,5 @@ spec:
 repo:
   url: https://github.com/narze/home-cluster.git
   revision: main
+letsencrypt:
+  email: manassarn@gmail.com
