@@ -6,12 +6,12 @@ metadata:
     kubernetes.io/ingress.class: traefik
     # traefik.ingress.kubernetes.io/router.tls: "true"
     # traefik.ingress.kubernetes.io/router.entrypoints: https
-    cert-manager.io/cluster-issuer: cloudflare
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
-  # tls:
-  # - hosts:
-  #   - streamie.homelab.dsb.dev
-  #   secretName: streamie-tls
+  tls:
+    - hosts:
+        - streamie-socket.narze.live
+      secretName: streamie-socket-tls
   rules:
     - host: streamie-socket.narze.live
       http:

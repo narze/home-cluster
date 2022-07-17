@@ -12,6 +12,9 @@ spec:
     - hosts:
         - streamie-feed.narze.live
       secretName: streamie-feed-tls
+    - hosts:
+        - streamie.narze.live
+      secretName: streamie-tls
   rules:
     - host: streamie.narze.live
       http:
